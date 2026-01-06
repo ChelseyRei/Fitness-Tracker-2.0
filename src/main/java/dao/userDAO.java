@@ -1,7 +1,7 @@
 package dao;
 
-import HEAT.model.User;
-import HEAT.model.BodyMetric;
+import model.User;
+import model.BodyMetric;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

@@ -1,9 +1,9 @@
 package dao;
 
-import HEAT.model.Workout;
-import HEAT.model.StrengthWorkout;
-import HEAT.model.CardioWorkout;
-import HEAT.model.PersonalRecord;
+import model.Workout;
+import model.StrengthWorkout;
+import model.CardioWorkout;
+import model.PersonalRecord;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

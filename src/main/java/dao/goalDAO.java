@@ -1,7 +1,7 @@
 package dao;
 
-import HEAT.model.Goal;
-import HEAT.model.GoalStatus;
+import model.Goal;
+import model.GoalStatus;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
