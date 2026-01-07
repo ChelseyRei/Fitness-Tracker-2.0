@@ -1,48 +1,104 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import service.GoalService;
 import model.Goal;
 import model.GoalStatus;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class SetGoalController {
 
-    @FXML private TextField titleField;
-    @FXML private ComboBox<String> typeComboBox;
-    @FXML private TextField targetValueField;
+    // --- FXML Fields (Must match fx:id in SetGoal.fxml) ---
+    @FXML private ComboBox<String> goalTypeComboBox;
+    @FXML private TextArea goalDescriptionTextArea;
+    @FXML private TextField targetTextField;
+    @FXML private DatePicker startDatePicker;
     @FXML private DatePicker endDatePicker;
+    @FXML private Button saveGoalButton;
+
+    // --- Navigation Buttons ---
+    @FXML private Button summaryNavButton;
+    @FXML private Button homeNavButton;
+    @FXML private Button goalsNavButton;
 
     private final GoalService goalService = new GoalService();
 
     @FXML
     public void initialize() {
-        typeComboBox.getItems().addAll("Weight Loss", "Muscle Gain", "Consistency");
+        // 1. Populate the Goal Type dropdown
+        goalTypeComboBox.getItems().addAll("Weight Loss", "Muscle Gain", "Consistency", "Endurance");
+
+        // 2. Set defaults
+        startDatePicker.setValue(LocalDate.now());
+
+        // 3. Setup Button Actions
+        saveGoalButton.setOnAction(e -> handleSave());
+
+        // 4. Setup Navigation
+        homeNavButton.setOnAction(e -> navigate("MainDashboard"));
+        summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
+        // goalsNavButton is currently on this page, but we can set it to refresh or do nothing
+        goalsNavButton.setOnAction(e -> navigate("SetGoal"));
     }
 
-    @FXML
-    private void handleSave() throws IOException {
+    private void handleSave() {
         try {
-            String title = titleField.getText();
-            String type = typeComboBox.getValue();
-            double target = Double.parseDouble(targetValueField.getText());
+            String type = goalTypeComboBox.getValue();
+            String description = goalDescriptionTextArea.getText();
+            String targetText = targetTextField.getText();
+            LocalDate start = startDatePicker.getValue();
             LocalDate end = endDatePicker.getValue();
 
-            Goal goal = new Goal(0, title, "General", LocalDate.now(), end, type, 0.0, target, GoalStatus.IN_PROGRESS);
-            goalService.addGoal(goal);
+            // Basic Validation
+            if (type == null || description.isEmpty() || targetText.isEmpty() || end == null) {
+                System.out.println("Please fill in all fields.");
+                return;
+            }
 
-            Main.setRoot("MainDashboard");
-        } catch (Exception e) {
-            System.out.println("Error saving goal.");
+            double targetValue = Double.parseDouble(targetText);
+
+            // Create Goal Object
+            // ID is 0 because database auto-increments it
+            // current_value is 0.0 for a new goal
+            Goal goal = new Goal(
+                0, 
+                description, 
+                "General", // Exercise name (can be generalized or added to UI later)
+                start, 
+                end, 
+                type, 
+                0.0, 
+                targetValue, 
+                GoalStatus.IN_PROGRESS
+            );
+
+            // Save to Database
+            if (goalService.addGoal(goal)) {
+                System.out.println("Goal saved successfully!");
+                navigate("MainDashboard");
+            } else {
+                System.err.println("Failed to save goal.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number for target value.");
         }
     }
 
-    @FXML
-    private void handleBack() throws IOException {
-        Main.setRoot("MainDashboard");
+    // Helper method for navigation
+    private void navigate(String fxml) {
+        try {
+            Main.setRoot(fxml);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error navigating to " + fxml);
+        }
     }
 }

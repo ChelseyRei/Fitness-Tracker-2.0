@@ -11,5 +11,6 @@
             "environmentVariable": "JAVA_HOME",
             "value": "c:\\Program Files\\Java\\jdk-21"
         }
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }

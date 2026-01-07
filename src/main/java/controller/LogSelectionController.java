@@ -11,7 +11,6 @@ import service.WorkoutService;
 import model.Workout;
 import model.StrengthWorkout;
 import model.CardioWorkout;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -27,66 +26,53 @@ public class LogSelectionController {
     @FXML private Button homeNavButton;
     @FXML private Button goalsNavButton;
 
-    // Connect to the backend service
     private final WorkoutService workoutService = new WorkoutService();
 
     @FXML
     public void initialize() {
+        // Workout Type Selections
+        strengthButton.setOnAction(e -> navigate("LogStrength"));
+        cardioButton.setOnAction(e -> navigate("LogCardio"));
+
+        // Bottom Navigation Bar
+        homeNavButton.setOnAction(e -> navigate("MainDashboard"));
+        summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
+        goalsNavButton.setOnAction(e -> navigate("SetGoal"));
+
+        // Top Bar
+        backButton.setOnAction(e -> navigate("MainDashboard"));
+        profileButton.setOnAction(e -> navigate("EditProfile"));
+
         loadWorkoutHistory();
-        setupEventHandlers();
     }
 
     private void loadWorkoutHistory() {
-        // Clear dummy data first
         historyList.getChildren().clear();
-
-        // Fetch actual history from the database
         List<Workout> workouts = workoutService.getWorkoutHistory();
 
         if (workouts.isEmpty()) {
-            Label emptyLabel = new Label("No recent workouts.");
-            emptyLabel.setStyle("-fx-text-fill: #7d7d7d; -fx-padding: 10;");
-            historyList.getChildren().add(emptyLabel);
+            historyList.getChildren().add(new Label("No recent workouts."));
         } else {
             for (Workout workout : workouts) {
-                String iconType = "Dumbbell"; // Default
-                String details = "";
-
-                if (workout instanceof StrengthWorkout) {
-                    StrengthWorkout sw = (StrengthWorkout) workout;
-                    iconType = "Dumbbell";
-                    details = sw.getSetCount() + " sets | " + sw.getRepCount() + " reps | " + sw.getExternalWeightKg() + "kg";
-                } else if (workout instanceof CardioWorkout) {
-                    CardioWorkout cw = (CardioWorkout) workout;
-                    iconType = "Cardio";
-                    details = cw.getDurationMinutes() + " mins | " + cw.getDistanceKm() + " km";
-                }
-
-                addHistoryItem(iconType, workout.getName(), details);
+                String details = (workout instanceof StrengthWorkout sw) 
+                    ? sw.getSetCount() + " sets | " + sw.getRepCount() + " reps" 
+                    : ((CardioWorkout) workout).getDurationMinutes() + " mins";
+                addHistoryItem(workout.getName(), details);
             }
         }
     }
 
-    private void addHistoryItem(String iconType, String workoutName, String details) {
-        HBox item = new HBox(12);
-        item.setAlignment(Pos.CENTER_LEFT);
+    private void addHistoryItem(String name, String details) {
+        VBox item = new VBox(new Label(name), new Label(details));
         item.getStyleClass().add("history-item");
+        historyList.getChildren().add(item);
+    }
 
-        Label icon = new Label();
-        // Use the CSS classes defined in your style sheets
-        if (iconType.equals("Cardio")) {
-            icon.getStyleClass().add("svg-icon-cardio");
-        } else {
-            icon.getStyleClass().add("svg-icon-dumbbell");
+    private void navigate(String fxml) {
+        try {
+            Main.setRoot(fxml);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        VBox textBox = new VBox(2);
-        Label nameLabel = new Label(workoutName);
-        nameLabel.getStyleClass().add("history-workout-name");
-        
-        Label detailsLabel = new Label(details);
-        detailsLabel.getStyleClass().add("history-workout-details");
-        
-        textBox.getChildren().addAll(nameLabel, detailsLabel);
-
-        item
+    }
+}
