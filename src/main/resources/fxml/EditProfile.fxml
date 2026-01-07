@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/EditProfile.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileController">
+   <children>
+      <AnchorPane fx:id="headerBackground" prefHeight="220.0" prefWidth="400.0" />
+      
+      <Button fx:id="backButton" layoutX="33.0" layoutY="39.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+         <graphic>
+            <Label alignment="CENTER_RIGHT" styleClass="arrow-icon">
+               <padding>
+                  <Insets left="11.0" />
+               </padding>
+            </Label>
+         </graphic>
+      </Button>
+      
+      <Label fx:id="editProfileLabel" layoutX="280.0" layoutY="47.0" text="Edit Profile" />
+      
+      <Label styleClass="svg-icon-user-large" layoutX="50.0" layoutY="105.0" prefHeight="80.0" prefWidth="80.0" />
+      
+      <VBox layoutX="175.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="birthdayValue" text="Birthday: Value" />
+            <Label fx:id="ageValue" text="Age: Value" />
+         </children>
+      </VBox>
+      
+      <VBox layoutX="25.0" layoutY="225.0" prefHeight="70.0" prefWidth="350.0">
+         <children>
+            <Label fx:id="lastName" text="LastName" />
+            <Label fx:id="firstName" text="FirstName" />
+         </children>
+      </VBox>
+      
+      <Line endX="326.0" layoutX="37.0" layoutY="315.0" startX="0.0" stroke="#E0E0E0" />
+      
+      <GridPane hgap="20.0" layoutX="44.0" layoutY="345.0" prefHeight="300.0" prefWidth="312.0" vgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="146.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="146.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox fx:id="weightTile" alignment="CENTER" prefHeight="140.0" prefWidth="146.0" styleClass="user-value-tiles">
+               <children>
+                  <Label styleClass="tile-header" text="Weight" />
+                  <HBox alignment="BASELINE_CENTER" prefHeight="28.0" prefWidth="126.0">
+                     <children>
+                        <Label fx:id="weightValue" styleClass="tile-value" text="50" />
+                        <Label fx:id="weightUnit" styleClass="tile-unit" text="kg">
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="heightTile" alignment="CENTER" prefHeight="140.0" prefWidth="146.0" styleClass="user-value-tiles" GridPane.columnIndex="1">
+               <children>
+                  <Label styleClass="tile-header" text="Height" />
+                  <HBox alignment="BASELINE_CENTER" prefHeight="28.0" prefWidth="126.0">
+                     <children>
+                        <Label fx:id="heightValue" styleClass="tile-value" text="170" />
+                        <Label fx:id="heightUnit" styleClass="tile-unit" text="cm">
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="bmiTile" alignment="CENTER" prefHeight="140.0" prefWidth="146.0" styleClass="user-value-tiles" GridPane.rowIndex="1">
+               <children>
+                  <Label styleClass="tile-header" text="BMI" />
+                  <HBox alignment="BASELINE_CENTER" prefHeight="28.0" prefWidth="126.0">
+                     <children>
+                        <Label fx:id="bmiValue" styleClass="tile-value" text="17.3" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="bmrTile" alignment="CENTER" prefHeight="140.0" prefWidth="146.0" styleClass="user-value-tiles" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label styleClass="tile-header" text="BMR" />
+                  <HBox alignment="BASELINE_CENTER" prefHeight="28.0" prefWidth="126.0">
+                     <children>
+                        <Label fx:id="bmrValue" styleClass="tile-value" text="1478" />
+                        <Label fx:id="bmrUnit" styleClass="tile-unit" text="kcal">
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

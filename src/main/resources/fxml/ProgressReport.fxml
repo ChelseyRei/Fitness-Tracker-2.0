@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/ProgressReport.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="50.0">
+         <children>
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
+               <graphic>
+                  <Label styleClass="arrow-icon" />
+               </graphic>
+            </Button>
+            <Label fx:id="progressTitle" text="Progress Report" />
+            <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
+               <graphic>
+                  <Label styleClass="svg-icon-user" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="90.0" prefHeight="640.0" prefWidth="400.0" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
+         <content>
+            <VBox prefWidth="380.0" spacing="15.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+               <children>
+                  <VBox prefWidth="360.0" styleClass="pr-card">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="card-title" text="Broken PRs" />
+                        <GridPane hgap="10.0" vgap="8.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <Label styleClass="pr-label" text="WO" />
+                                    <Label styleClass="pr-value" text="S - R" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label styleClass="pr-label" text="CARDIO" />
+                                    <Label styleClass="pr-value" text="TOTAL DURATION" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="pr-label" text="WO" />
+                                    <Label styleClass="pr-value" text="S - R" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="pr-label" text="CARDIO" />
+                                    <Label styleClass="pr-value" text="TOTAL DURATION" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  
+                  <HBox prefWidth="360.0" spacing="15.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="130.0" prefWidth="170.0" styleClass="calorie-card">
+                           <children>
+                              <Label styleClass="card-subtitle" text="TOTAL CALORIE" />
+                              <Label styleClass="card-subtitle" text="BURNED IN A WEEK" />
+                              <Label fx:id="calorieValue" styleClass="calorie-value" text="1478">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label styleClass="calorie-unit" text="kcal" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" prefHeight="130.0" prefWidth="170.0" styleClass="pie-card">
+                           <children>
+                              <Label styleClass="card-subtitle" text="WORKOUT PIE CHART" />
+                              <PieChart fx:id="workoutPieChart" prefHeight="100.0" prefWidth="150.0" styleClass="pie-chart">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </PieChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <Button fx:id="weighInButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="360.0" styleClass="weigh-in-button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT" prefWidth="320.0" spacing="15.0">
+                           <children>
+                              <Label styleClass="svg-icon-scale" />
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="weigh-in-title" text="Weigh in" />
+                                    <Label fx:id="lastWeighInLabel" styleClass="weigh-in-subtitle" text="Last Weigh in" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_RIGHT">
+                                 <children>
+                                    <Label fx:id="currentWeightValue" styleClass="weight-value" text="50" />
+                                    <Label styleClass="weight-unit" text="kgs" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  
+                  <VBox prefWidth="360.0" styleClass="chart-card">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <LineChart fx:id="weightLineChart" prefHeight="200.0" prefWidth="330.0" styleClass="line-chart">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" styleClass="chart-axis" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis lowerBound="0.0" side="LEFT" styleClass="chart-axis" upperBound="60.0" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      
+      <HBox alignment="CENTER" layoutY="730.0" prefHeight="64.0" prefWidth="400.0" spacing="60.0" styleClass="bottom-nav">
+         <children>
+            <Button fx:id="summaryNavButton" mnemonicParsing="false" styleClass="nav-button-active">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Summary_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label-active" text="Summary" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="homeNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Home_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Home" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="goalsNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Goals_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Goals" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

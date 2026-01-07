@@ -1,0 +1,23 @@
+/* The progress bar */
+#registrationProgressBar {
+    -fx-pref-height: 6;
+    -fx-min-height: 6;
+    -fx-max-height: 6;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+/* Responsible for filling the progress bar with the light gray color */
+#registrationProgressBar .track {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
+/* Responsible for filling the progress bar with the black color */
+#registrationProgressBar .bar {
+    -fx-background-color: #000000;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}

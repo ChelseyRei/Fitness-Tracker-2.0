@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/SetGoal.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="40.0" prefHeight="100.0" prefWidth="230.0" spacing="5.0">
+         <children>
+            <Label fx:id="goalTitleLabel" prefHeight="30.0" prefWidth="266.0" text="What's Your Fitness" />
+            <Label fx:id="goalTitleOrange" prefHeight="66.0" prefWidth="250.0" text="GOAL?" />
+         </children>
+      </VBox>
+      
+      <Label styleClass="svg-icon-target" layoutX="270.0" layoutY="40.0" prefHeight="100.0" prefWidth="100.0" />
+      
+      <Line endX="285.0" layoutX="60.0" layoutY="155.0" startX="0.0" stroke="#E0E0E0" />
+      
+      <VBox layoutX="55.0" layoutY="180.0" prefHeight="470.0" prefWidth="290.0" spacing="8.0">
+         <children>
+            <Label styleClass="input-label" text="Type of Goal" />
+            <ComboBox fx:id="goalTypeComboBox" prefHeight="45.0" prefWidth="290.0" promptText="Choose a goal" />
+            
+            <Label styleClass="input-label" text="Short Title/Description">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="goalDescriptionTextArea" prefHeight="80.0" prefWidth="290.0" promptText="Write a short description..." styleClass="text-area-field" wrapText="true" />
+            
+            <Label styleClass="input-label" text="Target">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="targetTextField" prefHeight="45.0" prefWidth="290.0" styleClass="text-fields" />
+            
+            <Label styleClass="input-label" text="Start Date">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="startDatePicker" prefHeight="45.0" prefWidth="290.0" promptText="MM/DD/YYYY" />
+            
+            <Label styleClass="input-label" text="End Date">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="endDatePicker" prefHeight="45.0" prefWidth="290.0" promptText="MM/DD/YYYY" />
+         </children>
+      </VBox>
+      
+      <Button fx:id="saveGoalButton" layoutX="65.0" layoutY="665.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="270.0" text="Save Goal">
+         <graphic>
+            <Label styleClass="svg-icon-edit" opacity="0.8" />
+         </graphic>
+      </Button>
+      
+      <HBox alignment="CENTER" layoutY="730.0" prefHeight="64.0" prefWidth="400.0" spacing="60.0" styleClass="bottom-nav">
+         <children>
+            <Button fx:id="summaryNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Summary_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Summary" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="homeNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Home_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Home" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="goalsNavButton" mnemonicParsing="false" styleClass="nav-button-active">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Goals_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label-active" text="Goals" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

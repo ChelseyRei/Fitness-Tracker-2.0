@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/LogSelection.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="100.0">
+         <children>
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
+               <graphic>
+                  <Label styleClass="arrow-icon" />
+               </graphic>
+            </Button>
+            <Label fx:id="logTitle" text="Log Activity" />
+            <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/User_icon.svg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      
+      <VBox layoutX="40.0" layoutY="110.0" prefWidth="320.0" spacing="20.0">
+         <children>
+            <HBox prefWidth="320.0" spacing="20.0">
+               <children>
+                  <Button fx:id="strengthButton" mnemonicParsing="false" prefHeight="120.0" prefWidth="150.0" styleClass="workout-type-button">
+                     <graphic>
+                        <VBox alignment="CENTER" spacing="8.0">
+                           <children>
+                              <Label styleClass="svg-icon-dumbbell" opacity="0.75" rotate="143.4" />
+                              <Label styleClass="workout-type-label" text="Strength" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  
+                  <Button fx:id="cardioButton" mnemonicParsing="false" prefHeight="120.0" prefWidth="150.0" styleClass="workout-type-button">
+                     <graphic>
+                        <VBox alignment="CENTER" spacing="8.0">
+                           <children>
+                              <Label styleClass="svg-icon-cardio" opacity="0.75" />
+                              <Label styleClass="workout-type-label" text="Cardio" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Line endX="308.5" startX="-11.0" styleClass="separator-line" />
+            
+            <VBox prefWidth="320.0" spacing="8.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+            
+            <VBox prefHeight="330.0" prefWidth="320.0" styleClass="history-container">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <Label prefHeight="27.0" prefWidth="321.0" styleClass="section-title" text="               Workout History" textAlignment="CENTER" textFill="#1e1e1e">
+                     <VBox.margin>
+                        <Insets top="-10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="19.0" prefWidth="325.0" styleClass="section-subtitle" text="                                 This Week" textFill="#1e1e1e">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="290.0" styleClass="history-scroll" vbarPolicy="AS_NEEDED">
+                     <content>
+                        <VBox prefWidth="270.0" spacing="12.0">
+                           <children>
+                              <VBox styleClass="history-item">
+                                 <children>
+                                    <Label styleClass="history-workout-name" text="Bicep Curls" />
+                                    <Label styleClass="history-workout-details" text="2 sets | 15 Reps | 5kg" />
+                                 </children>
+                              </VBox>
+                              
+                              <VBox styleClass="history-item">
+                                 <children>
+                                    <Label styleClass="history-workout-name" text="Preacher Curls" />
+                                    <Label styleClass="history-workout-details" text="2 sets | 10 Reps | 10kg" />
+                                 </children>
+                              </VBox>
+                              
+                              <VBox styleClass="history-item">
+                                 <children>
+                                    <Label styleClass="history-workout-name" text="Jumping Jacks" />
+                                    <Label styleClass="history-workout-details" text="4 sets | 50 reps" />
+                                 </children>
+                              </VBox>
+                              
+                              <VBox styleClass="history-item">
+                                 <children>
+                                    <Label styleClass="history-workout-name" text="Mountain Climber" />
+                                    <Label styleClass="history-workout-details" text="1 set | 15 reps" />
+                                 </children>
+                              </VBox>
+                              
+                              <VBox styleClass="history-item">
+                                 <children>
+                                    <Label styleClass="history-workout-name" text="Running" />
+                                    <Label styleClass="history-workout-details" text="4:07km | 5.0km" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <VBox.margin>
+                  <Insets top="-35.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+      
+      <HBox alignment="CENTER" layoutY="730.0" prefHeight="64.0" prefWidth="400.0" spacing="60.0" styleClass="bottom-nav">
+         <children>
+            <Button fx:id="summaryNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Summary_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Summary" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="homeNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Home_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Home" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            
+            <Button fx:id="goalsNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label styleClass="svg-icon-user" />
+                        <Label styleClass="nav-label" text="Goals" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
