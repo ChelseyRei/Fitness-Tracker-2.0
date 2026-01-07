@@ -30,22 +30,23 @@ public class Main extends Application {
     }
 
     // Static method for easy navigation from Controllers
-    public static void setRoot(String fxml) throws IOException {
-        // Updated path to match your new folder structure
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/view/" + fxml + ".fxml"));
-        Parent root = fxmlLoader.load();
-        
-        Scene scene = new Scene(root);
-        // Load CSS if it exists
-        String cssPath = Main.class.getResource("/css/style/" + fxml + ".css") != null 
-                        ? Main.class.getResource("/css/style/" + fxml + ".css").toExternalForm() 
-                        : null;
-        
-        if (cssPath != null) {
-            scene.getStylesheets().add(cssPath);
-        }
-        
-        primaryStage.setScene(scene);
+   public static void setRoot(String fxml) throws IOException {
+    // FIX: Removed "/view/" because your files are directly inside "/fxml/"
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/" + fxml + ".fxml"));
+    Parent root = fxmlLoader.load();
+    
+    Scene scene = new Scene(root);
+    
+    // FIX: Removed "/style/" because your files are directly inside "/css/"
+    String cssPath = Main.class.getResource("/css/" + fxml + ".css") != null 
+                    ? Main.class.getResource("/css/" + fxml + ".css").toExternalForm() 
+                    : null;
+    
+    if (cssPath != null) {
+        scene.getStylesheets().add(cssPath);
+    }
+    
+    primaryStage.setScene(scene);
     }
 
     public static void main(String[] args) {
