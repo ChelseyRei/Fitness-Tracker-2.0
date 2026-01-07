@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/LogStrength.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogStrengthController">
+   <children>
+      <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="100.0">
+         <children>
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
+               <graphic>
+                  <Label styleClass="arrow-icon" />
+               </graphic>
+            </Button>
+            <Label styleClass="title-label" text="Strength" />
+            <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
+               <graphic>
+                  <Label styleClass="svg-icon-user" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+
+      <VBox alignment="CENTER" layoutX="40.0" layoutY="110.0" prefHeight="94.0" prefWidth="320.0" styleClass="icon-container">
+         <children>
+            <Label styleClass="svg-icon-dumbbell" rotate="143.4" />
+         </children>
+      </VBox>
+
+      <Line endX="280.0" layoutX="78.0" layoutY="216.0" startX="-37.4000244140625" strokeWidth="2.0" styleClass="divider-line" />
+
+      <VBox layoutX="40.0" layoutY="227.0" prefHeight="480.0" prefWidth="320.0" spacing="15.0" styleClass="workout-card">
+         <children>
+            <Label prefHeight="26.0" prefWidth="174.0" styleClass="section-title" text="Strength Training" />
+            
+            <ComboBox fx:id="exerciseComboBox" prefWidth="280.0" promptText="Choose an exercise" styleClass="exercise-combo">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ComboBox>
+
+            <Label styleClass="field-label" text="Sets">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="setsField" promptText="Enter number of sets" styleClass="input-field" />
+
+            <Label styleClass="field-label" text="Reps" />
+            <TextField fx:id="repsField" promptText="Enter number of reps" styleClass="input-field" />
+
+            <Label styleClass="field-label" text="Weight" />
+            <TextField fx:id="weightField" promptText="in kg" styleClass="input-field" />
+
+            <Button fx:id="saveWorkoutButton" prefHeight="50.0" prefWidth="280.0" styleClass="save-button" text="Save Workout">
+               <graphic>
+                  <Label styleClass="svg-icon-edit" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+
+      <HBox alignment="CENTER" layoutY="734.0" prefHeight="60.0" prefWidth="400.0" spacing="80.0" styleClass="nav-bar">
+         <children>
+            <Button fx:id="summaryNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="4.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Summary_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Summary" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button fx:id="homeNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="4.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Home_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Home" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button fx:id="goalsNavButton" mnemonicParsing="false" styleClass="nav-button">
+               <graphic>
+                  <VBox alignment="CENTER" spacing="4.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/Goals_icon.svg" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="nav-label" text="Goals" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

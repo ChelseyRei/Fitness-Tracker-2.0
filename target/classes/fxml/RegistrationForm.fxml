@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/RegistrationForm.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationFormController">
+   <children>
+      <Button fx:id="backButton" layoutX="33.0" layoutY="39.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+         <graphic>
+            <Label alignment="CENTER_RIGHT" styleClass="arrow-icon">
+               <padding>
+                  <Insets left="11.0" />
+               </padding>
+            </Label>
+         </graphic>
+      </Button>
+      
+      <Label fx:id="userRegistrationLabel" layoutX="133.0" layoutY="47.0" text="User Registration" />
+      
+      <Rectangle fx:id="progressBarBackground" fill="#E0E0E0" height="4.0" layoutX="72.0" layoutY="78.0" stroke="TRANSPARENT" width="255.0" />
+      <Rectangle fx:id="progressBarFill" fill="#000000" height="4.0" layoutX="72.0" layoutY="78.0" stroke="TRANSPARENT" width="170.0" />
+      
+      <Label styleClass="svg-icon-user-large" layoutX="160.0" layoutY="130.0" prefHeight="80.0" prefWidth="80.0" />
+      
+      <VBox layoutX="42.0" layoutY="233.0" prefHeight="385.0" prefWidth="316.0" spacing="15.0">
+         <children>
+            <Label styleClass="input-label" text="Name" />
+            <TextField fx:id="nameTextField" promptText="LN, FN MI." styleClass="text-fields" />
+            
+            <Label styleClass="input-label" text="Birthday">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="birthdayDatePicker" prefHeight="40.0" prefWidth="316.0" promptText="MM/DD/YYYY" />
+            
+            <Label styleClass="input-label" text="Sex">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="sexComboBox" prefHeight="40.0" prefWidth="316.0" promptText="Select sex" />
+            
+            <Label styleClass="input-label" text="Weight">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="weightTextField" promptText="in kgs" styleClass="text-fields" />
+            
+            <Label styleClass="input-label" text="Height">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="heightTextField" promptText="in cm" styleClass="text-fields" />
+         </children>
+      </VBox>
+      
+      <HBox alignment="CENTER" layoutY="698.0" prefHeight="26.0" prefWidth="400.0" spacing="7.5">
+         <children>
+            <Circle fill="#BCBCBC" radius="4.0" stroke="TRANSPARENT" />
+            <Circle fill="#000000" radius="4.0" stroke="TRANSPARENT" />
+            <Circle fill="#BCBCBC" radius="4.0" stroke="TRANSPARENT" />
+         </children>
+      </HBox>
+      
+      <Button fx:id="nextButton" alignment="CENTER" layoutX="63.0" layoutY="732.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="270.0" text="Next" />
+   </children>
+</AnchorPane>

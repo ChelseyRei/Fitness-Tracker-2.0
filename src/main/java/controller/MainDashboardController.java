@@ -2,45 +2,58 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import service.UserService;
-import service.WorkoutService;
 import model.User;
-import model.Workout;
-
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
 
 public class MainDashboardController {
 
-    @FXML private Label welcomeLabel;
-    @FXML private Label streakLabel;
-    @FXML private Label bmiLabel;
-    @FXML private Label weightLabel;
-    @FXML private ProgressBar goalProgressBar; // Example UI element
+    // --- MATCHING FXML IDs ---
+    @FXML private Label streakText;  // Renamed from 'streakLabel' to match FXML
+    @FXML private Label dateLabel;   // Added because it exists in your FXML
+
+    // --- MISSING IN FXML (Commented out to stop the crash) ---
+    // To use these, you must add Labels with these fx:id's to your MainDashboard.fxml file first.
+    // @FXML private Label welcomeLabel; 
+    // @FXML private Label bmiLabel;
+    // @FXML private Label weightLabel;
+    // @FXML private ProgressBar goalProgressBar;
 
     private final UserService userService = new UserService();
-    private final WorkoutService workoutService = new WorkoutService();
 
     @FXML
     public void initialize() {
+        // 1. Set the date
+        if (dateLabel != null) {
+            dateLabel.setText(LocalDate.now().toString());
+        }
+
+        // 2. Load User Data
         loadUserData();
     }
 
     private void loadUserData() {
         User user = userService.getUserProfile();
         if (user != null) {
-            welcomeLabel.setText("Welcome back, " + user.getName() + "!");
-            streakLabel.setText(String.valueOf(user.getCurrentStreak()));
-            bmiLabel.setText(String.format("%.1f", user.getBMI()));
-            weightLabel.setText(String.format("%.1f kg", user.getWeightKg()));
+            // This label is missing in FXML, so we skip it for now
+            // welcomeLabel.setText("Welcome back, " + user.getName() + "!");
             
-            // Check streak on login
+            // This ID matches now, so it will work
+            if (streakText != null) {
+                streakText.setText(String.valueOf(user.getCurrentStreak()) + " Days");
+            }
+
+            // These are missing in FXML, so we skip them
+            // bmiLabel.setText(String.format("%.1f", user.getBMI()));
+            // weightLabel.setText(String.format("%.1f kg", user.getWeightKg()));
+            
+            // Check streak logic
             userService.refreshStreak();
         }
     }
 
-    // Navigation Events
+    // --- NAVIGATION ---
     @FXML
     private void handleLogWorkout() throws IOException {
         Main.setRoot("LogSelection");
@@ -48,7 +61,7 @@ public class MainDashboardController {
 
     @FXML
     private void handleViewHistory() throws IOException {
-        Main.setRoot("ProgressReport"); // Assuming you have this view
+        Main.setRoot("ProgressReport");
     }
 
     @FXML

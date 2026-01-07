@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="794.0" prefWidth="400.0" stylesheets="@../css/RegistrationProgressLayout.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" layoutY="676.0" prefHeight="26.0" prefWidth="400.0" spacing="7.5">
+         <children>
+            <Circle fx:id="firstPageCircle" radius="4.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="secondPageCircle" fill="#bcbcbc" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="thirdPageCircle" fill="#bcbcbc" radius="4.0" stroke="#d9d9d9" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </HBox>
+      <ProgressBar fx:id="registrationProgressBar" layoutX="72.0" layoutY="78.0" prefHeight="4.0" prefWidth="255.0" progress="0.3" />
+   </children>
+</AnchorPane>
