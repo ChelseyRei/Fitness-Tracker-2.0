@@ -15,7 +15,9 @@ public class LogCardioController {
     @FXML private Button profileButton;
     @FXML private ComboBox<String> activityComboBox;
     @FXML private TextField durationField;
-    @FXML private Button saveWorkoutButton; // Added to match FXML ID
+    @FXML private Button saveWorkoutButton; // Matches fx:id in FXML
+    
+    // Bottom Navigation
     @FXML private Button summaryNavButton;
     @FXML private Button homeNavButton;
     @FXML private Button goalsNavButton;
@@ -24,18 +26,18 @@ public class LogCardioController {
 
     @FXML
     public void initialize() {
-        // 1. Populate activities
+        // 1. Populate Dropdown
         activityComboBox.getItems().addAll("Running", "Cycling", "Swimming", "Walking", "Jumping Jacks");
 
-        // 2. Setup Action Buttons (This was missing!)
+        // 2. Setup Action Buttons
         saveWorkoutButton.setOnAction(e -> handleSave());
         profileButton.setOnAction(e -> navigate("EditProfile"));
+        backButton.setOnAction(e -> navigate("LogSelection"));
 
-        // 3. Navigation Bar
+        // 3. Setup Navigation Bar
         homeNavButton.setOnAction(e -> navigate("MainDashboard"));
         summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
         goalsNavButton.setOnAction(e -> navigate("SetGoal"));
-        backButton.setOnAction(e -> navigate("LogSelection"));
     }
 
     private void handleSave() {
@@ -43,34 +45,23 @@ public class LogCardioController {
             String activity = activityComboBox.getValue();
             String durationText = durationField.getText();
 
-            // Simple validation
             if (activity == null || durationText.isEmpty()) {
-                System.out.println("Please fill in all fields");
+                System.out.println("Please select an activity and enter duration.");
                 return;
             }
 
             int duration = Integer.parseInt(durationText);
-            
-            // Create workout (Calories = duration * 8 as a placeholder estimate)
-            CardioWorkout workout = new CardioWorkout(
-                0, 
-                activity, 
-                "Cardio", 
-                LocalDate.now(), 
-                duration * 8.0, 
-                duration, 
-                0.0
-            );
-            
-            // Save and go home
+            // Estimate calories (approx 8 per minute)
+            double calories = duration * 8.0; 
+
+            CardioWorkout workout = new CardioWorkout(0, activity, "Cardio", LocalDate.now(), calories, duration, 0.0);
+
             if (workoutService.logWorkout(workout)) {
-                System.out.println("Cardio workout saved!");
+                System.out.println("Saved!");
                 navigate("MainDashboard");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid duration: must be a number");
-        } catch (Exception e) {
-            System.out.println("Error saving: " + e.getMessage());
+            System.out.println("Invalid number format.");
         }
     }
 
