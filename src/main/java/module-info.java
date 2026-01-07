@@ -4,7 +4,7 @@ module fitness.tracker {
     requires java.sql;
     requires org.xerial.sqlitejdbc;
 
-    // CRITICAL: This allows JavaFX to see your UI Controllers
+    // This allows JavaFX to see your UI Controllers
     opens controller to javafx.fxml;
 
     // Export your code so the rest of the app can use it
