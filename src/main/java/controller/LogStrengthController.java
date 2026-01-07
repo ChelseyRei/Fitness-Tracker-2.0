@@ -1,65 +1,134 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.DatePicker;
 import service.WorkoutService;
 import model.StrengthWorkout;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class LogStrengthController {
 
-    @FXML private TextField exerciseNameField;
+    @FXML private Button backButton;
+    @FXML private Button profileButton;
+    @FXML private ComboBox<String> exerciseComboBox;
     @FXML private TextField setsField;
     @FXML private TextField repsField;
     @FXML private TextField weightField;
-    @FXML private TextField durationField;
-    @FXML private DatePicker datePicker;
+    @FXML private Button saveWorkoutButton;
+    @FXML private Button summaryNavButton;
+    @FXML private Button homeNavButton;
+    @FXML private Button goalsNavButton;
 
+    // Connect to the backend service
     private final WorkoutService workoutService = new WorkoutService();
 
     @FXML
-    private void handleSave() {
-        try {
-            String name = exerciseNameField.getText();
-            int sets = Integer.parseInt(setsField.getText());
-            int reps = Integer.parseInt(repsField.getText());
-            double weight = Double.parseDouble(weightField.getText());
-            int duration = Integer.parseInt(durationField.getText());
-            LocalDate date = datePicker.getValue() != null ? datePicker.getValue() : LocalDate.now();
+    public void initialize() {
+        loadExercises();
+        setupEventHandlers();
+    }
 
-            // Simple calculation for calories (can be improved in Service)
-            double calories = duration * 5.0; 
+    private void loadExercises() {
+        exerciseComboBox.getItems().addAll(
+            "Bicep Curls",
+            "Preacher Curls",
+            "Bench Press",
+            "Squats",
+            "Deadlift",
+            "Shoulder Press",
+            "Pull-ups",
+            "Push-ups"
+        );
+    }
+
+    private void setupEventHandlers() {
+        // Use lambdas for safe navigation
+        backButton.setOnAction(e -> navigate("LogSelection"));
+        profileButton.setOnAction(e -> navigate("EditProfile"));
+        saveWorkoutButton.setOnAction(e -> saveWorkout());
+        
+        // Navigation Bar
+        summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
+        homeNavButton.setOnAction(e -> navigate("MainDashboard"));
+        goalsNavButton.setOnAction(e -> navigate("SetGoal"));
+    }
+
+    private void saveWorkout() {
+        String exercise = exerciseComboBox.getValue();
+        String setsText = setsField.getText();
+        String repsText = repsField.getText();
+        String weightText = weightField.getText();
+
+        if (exercise == null || setsText.isEmpty() || repsText.isEmpty() || weightText.isEmpty()) {
+            System.out.println("Please fill in all fields.");
+            return;
+        }
+
+        try {
+            int sets = Integer.parseInt(setsText);
+            int reps = Integer.parseInt(repsText);
+            double weight = Double.parseDouble(weightText);
+
+            // Calculations
             double volume = sets * reps * weight;
+            
+            // Estimation (Since inputs are missing): 
+            // Assume ~3 minutes per set (including rest)
+            int estimatedDuration = sets * 3; 
+            // Rough estimate: 3 calories per minute of strength training
+            double estimatedCalories = estimatedDuration * 3.5; 
 
             StrengthWorkout workout = new StrengthWorkout(
-                0, name, "Strength", date, calories, duration,
-                sets, reps, weight, volume, 0.0
+                0,                  // ID
+                exercise,           // Name
+                "Strength",         // Type
+                LocalDate.now(),    // Date
+                estimatedCalories,  // Calories
+                estimatedDuration,  // Duration
+                sets,               // Sets
+                reps,               // Reps
+                weight,             // Weight
+                volume,             // Volume
+                0.0                 // BodyWeight Factor (default)
             );
 
+            // Save to Database
             boolean success = workoutService.logWorkout(workout);
-            
+
             if (success) {
-                // Check for Personal Record
-                workoutService.checkPersonalRecord(name, weight, reps, duration);
-                goBack();
+                // Check for Personal Record (heaviest weight lifted)
+                workoutService.checkPersonalRecord(exercise, weight, reps, estimatedDuration);
+                
+                System.out.println("Strength workout saved!");
+                clearFields();
+                navigate("MainDashboard");
             } else {
-                System.out.println("Failed to save workout.");
+                System.err.println("Failed to save workout.");
             }
+
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input! Please enter numbers.");
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Invalid number format.");
         }
     }
 
-    @FXML
-    private void handleCancel() throws IOException {
-        goBack();
+    private void clearFields() {
+        exerciseComboBox.setValue(null);
+        setsField.clear();
+        repsField.clear();
+        weightField.clear();
     }
 
-    private void goBack() throws IOException {
-        Main.setRoot("LogSelection");
+    // Helper method to use your Main.setRoot navigation
+    private void navigate(String fxml) {
+        try {
+            Main.setRoot(fxml);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error navigating to " + fxml);
+        }
     }
 }
