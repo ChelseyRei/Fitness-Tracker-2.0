@@ -1,54 +1,37 @@
-package controller;  
+package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import service.UserService;
-import model.User;
-
 import java.io.IOException;
 
+/**
+ * JavaFX App Entry Point
+ */
 public class Main extends Application {
 
-    private static Stage primaryStage;
+    private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        primaryStage = stage;
-        UserService userService = new UserService();
-        User user = userService.getUserProfile();
-
-        // If user exists, go to Dashboard. Else, go to Registration.
-        if (user != null) {
-            setRoot("MainDashboard");
-        } else {
-            setRoot("RegistrationStart");
-        }
-
-        primaryStage.setTitle("HEAT Fitness Tracker");
-        primaryStage.show();
+        // Load the initial screen (MainDashboard)
+        scene = new Scene(loadFXML("MainDashboard"), 400, 794);
+        stage.setScene(scene);
+        stage.setTitle("Fitness Tracker");
+        stage.show();
     }
 
-    // Static method for easy navigation from Controllers
-   public static void setRoot(String fxml) throws IOException {
-    // FIX: Removed "/view/" because your files are directly inside "/fxml/"
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/" + fxml + ".fxml"));
-    Parent root = fxmlLoader.load();
-    
-    Scene scene = new Scene(root);
-    
-    // FIX: Removed "/style/" because your files are directly inside "/css/"
-    String cssPath = Main.class.getResource("/css/" + fxml + ".css") != null 
-                    ? Main.class.getResource("/css/" + fxml + ".css").toExternalForm() 
-                    : null;
-    
-    if (cssPath != null) {
-        scene.getStylesheets().add(cssPath);
+    // This method allows other controllers to switch screens
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
     }
-    
-    primaryStage.setScene(scene);
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        // This looks for files in src/main/resources/fxml/
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/" + fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
