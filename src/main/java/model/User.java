@@ -41,4 +41,13 @@ public class User {
     public double getBMR() { return bmr; }
     public int getCurrentStreak() { return currentStreak; }
     public LocalDate getLastWorkoutDate() { return lastWorkoutDate; }
+
+    public void setAge(int newAge) { this.age = newAge; }
+    public void setHeightCm(double newHeight) { this.heightCm = newHeight; }
+    public void setWeightKg(double newWeight) { this.weightKg = newWeight; }
+    public void setBMI(double newBMI) { this.bmi = newBMI; }
+    public void setBMR(double newBMR) { this.bmr = newBMR; }
+    public void setCurrentStreak(int newStreak) { this.currentStreak = newStreak; }
+    public void setLastWorkoutDate(LocalDate newDate) { this.lastWorkoutDate = newDate; }
+
 }
