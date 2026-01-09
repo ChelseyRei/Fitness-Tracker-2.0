@@ -119,11 +119,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Summary_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Label styleClass="svg-icon-summary" />
                         <Label styleClass="nav-label" text="Summary" />
                      </children>
                   </VBox>
@@ -134,12 +130,8 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                               <Image url="@../assets/Home_icon.png" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="nav-label-active" text="Home"/>
+                        <Label opacity="0.75" styleClass="svg-icon-home" />
+                        <Label styleClass="nav-label-active" text="Home" />
                      </children>
                   </VBox>
                </graphic>
@@ -149,11 +141,7 @@
                 <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Goals_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Label opacity="0.75" styleClass="svg-icon-goals" />
                         <Label styleClass="nav-label" text="Goals" />
                      </children>
                   </VBox>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/LogSelection.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/LogSelection.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogSelectionController">
    <children>
       <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="100.0">
          <children>
@@ -25,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/User_icon.svg" />
+                        <Image url="@../assets/User_icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -41,7 +41,7 @@
                      <graphic>
                         <VBox alignment="CENTER" spacing="8.0">
                            <children>
-                              <Label styleClass="svg-icon-dumbbell" opacity="0.75" rotate="143.4" />
+                              <Label opacity="0.75" rotate="143.4" styleClass="svg-icon-dumbbell" />
                               <Label styleClass="workout-type-label" text="Strength" />
                            </children>
                         </VBox>
@@ -52,7 +52,7 @@
                      <graphic>
                         <VBox alignment="CENTER" spacing="8.0">
                            <children>
-                              <Label styleClass="svg-icon-cardio" opacity="0.75" />
+                              <Label opacity="0.75" styleClass="svg-icon-cardio" />
                               <Label styleClass="workout-type-label" text="Cardio" />
                            </children>
                         </VBox>
@@ -139,11 +139,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Summary_icon.svg" />
-                           </image>
-                        </ImageView>
+                        <Label styleClass="svg-icon-summary" />
                         <Label styleClass="nav-label" text="Summary" />
                      </children>
                   </VBox>
@@ -154,11 +150,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Home_icon.svg" />
-                           </image>
-                        </ImageView>
+                        <Label opacity="0.75" styleClass="svg-icon-home" />
                         <Label styleClass="nav-label" text="Home" />
                      </children>
                   </VBox>
@@ -169,7 +161,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <Label styleClass="svg-icon-user" />
+                        <Label opacity="0.75" styleClass="svg-icon-goals" />
                         <Label styleClass="nav-label" text="Goals" />
                      </children>
                   </VBox>

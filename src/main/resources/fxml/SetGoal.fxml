@@ -7,8 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -74,11 +72,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Summary_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Label styleClass="svg-icon-summary" />
                         <Label styleClass="nav-label" text="Summary" />
                      </children>
                   </VBox>
@@ -89,11 +83,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Home_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Label opacity="0.75" styleClass="svg-icon-home" />
                         <Label styleClass="nav-label" text="Home" />
                      </children>
                   </VBox>
@@ -104,11 +94,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/Goals_icon.png" />
-                           </image>
-                        </ImageView>
+                        <Label opacity="0.75" styleClass="svg-icon-goals" />
                         <Label styleClass="nav-label-active" text="Goals" />
                      </children>
                   </VBox>
