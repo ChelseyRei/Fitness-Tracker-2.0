@@ -126,16 +126,16 @@ public class MainDashboardController {
 
     private void setupEventHandlers() {
         // We use lambdas to handle the IOExceptions from navigation
-        profileButton.setOnAction(e -> navigate("EditProfileController"));
-        reminderCard.setOnMouseClicked(e -> navigate("LogSelectionController")); // Direct to logging
-        logWorkoutButton.setOnAction(e -> navigate("LogSelectionController"));
+        profileButton.setOnAction(e -> navigate("EditProfile"));
+        reminderCard.setOnMouseClicked(e -> navigate("LogSelection")); // Direct to logging
+        logWorkoutButton.setOnAction(e -> navigate("LogSelection"));
         refreshQuoteButton.setOnAction(e -> loadRandomQuote());
         
         // Navigation Bar
-        summaryNavButton.setOnAction(e -> navigate("ProgressReportController"));
+        summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
         // homeNavButton is already here, so no action needed or just refresh
         homeNavButton.setOnAction(e -> initialize()); 
-        goalsNavButton.setOnAction(e -> navigate("SetGoalController"));
+        goalsNavButton.setOnAction(e -> navigate("SetGoal"));
     }
 
     // Helper method to handle navigation via Main.setRoot
