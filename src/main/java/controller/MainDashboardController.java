@@ -133,7 +133,6 @@ public class MainDashboardController {
         
         // Navigation Bar
         summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
-        // homeNavButton is already here, so no action needed or just refresh
         homeNavButton.setOnAction(e -> initialize()); 
         goalsNavButton.setOnAction(e -> navigate("SetGoal"));
     }

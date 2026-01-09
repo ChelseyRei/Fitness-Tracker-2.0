@@ -23,7 +23,7 @@
          </children>
       </VBox>
       
-      <Label styleClass="svg-icon-target" layoutX="270.0" layoutY="40.0" prefHeight="100.0" prefWidth="100.0" />
+      <Label layoutX="270.0" layoutY="40.0" prefHeight="100.0" prefWidth="100.0" styleClass="svg-icon-target" />
       
       <Line endX="285.0" layoutX="60.0" layoutY="155.0" startX="0.0" stroke="#E0E0E0" />
       
@@ -64,7 +64,7 @@
       
       <Button fx:id="saveGoalButton" layoutX="65.0" layoutY="665.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="270.0" text="Save Goal">
          <graphic>
-            <Label styleClass="svg-icon-edit" opacity="0.8" />
+            <Label opacity="0.8" styleClass="svg-icon-edit" />
          </graphic>
       </Button>
       
@@ -76,7 +76,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Summary_icon.svg" />
+                              <Image url="@../assets/Summary_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Summary" />
@@ -91,7 +91,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Home_icon.svg" />
+                              <Image url="@../assets/Home_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Home" />
@@ -106,7 +106,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Goals_icon.svg" />
+                              <Image url="@../assets/Goals_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label-active" text="Goals" />
