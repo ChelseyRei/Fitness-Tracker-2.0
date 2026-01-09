@@ -4,8 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/LogSelection.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogSelectionController">
    <children>
-      <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="100.0">
+      <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="80.0">
          <children>
             <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
                <graphic>
@@ -23,11 +21,7 @@
             <Label fx:id="logTitle" text="Log Activity" />
             <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/User_icon.png" />
-                     </image>
-                  </ImageView>
+                  <Label styleClass="svg-icon-user" />
                </graphic>
             </Button>
          </children>
@@ -73,52 +67,25 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Label prefHeight="27.0" prefWidth="321.0" styleClass="section-title" text="               Workout History" textAlignment="CENTER" textFill="#1e1e1e">
+                  <Label prefHeight="27.0" prefWidth="321.0" styleClass="section-title" text="Workout History" textAlignment="CENTER" textFill="#1e1e1e">
                      <VBox.margin>
                         <Insets top="-10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label prefHeight="19.0" prefWidth="325.0" styleClass="section-subtitle" text="                                 This Week" textFill="#1e1e1e">
+                  <Label prefHeight="19.0" prefWidth="325.0" styleClass="section-subtitle" text="This Week" textFill="#1e1e1e">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="290.0" styleClass="history-scroll" vbarPolicy="AS_NEEDED">
+                  
+                  <ScrollPane fx:id="historyScrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="290.0" styleClass="history-scroll" vbarPolicy="AS_NEEDED">
                      <content>
-                        <VBox prefWidth="270.0" spacing="12.0">
+                        <VBox fx:id="historyList" prefWidth="270.0" spacing="12.0">
                            <children>
                               <VBox styleClass="history-item">
                                  <children>
                                     <Label styleClass="history-workout-name" text="Bicep Curls" />
                                     <Label styleClass="history-workout-details" text="2 sets | 15 Reps | 5kg" />
-                                 </children>
-                              </VBox>
-                              
-                              <VBox styleClass="history-item">
-                                 <children>
-                                    <Label styleClass="history-workout-name" text="Preacher Curls" />
-                                    <Label styleClass="history-workout-details" text="2 sets | 10 Reps | 10kg" />
-                                 </children>
-                              </VBox>
-                              
-                              <VBox styleClass="history-item">
-                                 <children>
-                                    <Label styleClass="history-workout-name" text="Jumping Jacks" />
-                                    <Label styleClass="history-workout-details" text="4 sets | 50 reps" />
-                                 </children>
-                              </VBox>
-                              
-                              <VBox styleClass="history-item">
-                                 <children>
-                                    <Label styleClass="history-workout-name" text="Mountain Climber" />
-                                    <Label styleClass="history-workout-details" text="1 set | 15 reps" />
-                                 </children>
-                              </VBox>
-                              
-                              <VBox styleClass="history-item">
-                                 <children>
-                                    <Label styleClass="history-workout-name" text="Running" />
-                                    <Label styleClass="history-workout-details" text="4:07km | 5.0km" />
                                  </children>
                               </VBox>
                            </children>

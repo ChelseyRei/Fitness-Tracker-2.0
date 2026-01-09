@@ -18,11 +18,7 @@
             <Label fx:id="heatTitle" text="H.E.A.T." />
             <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
                <graphic>
-                  <ImageView fx:id="EditProfile" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/User_icon.png" />
-                     </image>
-                  </ImageView>
+                  <Label styleClass="svg-icon-user" />
                </graphic>
             </Button>
          </children>

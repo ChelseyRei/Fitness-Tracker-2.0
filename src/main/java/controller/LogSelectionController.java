@@ -21,64 +21,64 @@ public class LogSelectionController {
     @FXML private Button profileButton;
     @FXML private Button strengthButton;
     @FXML private Button cardioButton;
-    @FXML private ScrollPane historyScrollPane;
-    @FXML private VBox historyList; // The VBox inside the ScrollPane
     
-    // Bottom Navigation
+    // These IDs now match the corrected FXML
+    @FXML private ScrollPane historyScrollPane;
+    @FXML private VBox historyList; 
+    
     @FXML private Button summaryNavButton;
     @FXML private Button homeNavButton;
     @FXML private Button goalsNavButton;
-    @FXML private Button logWorkoutButton;
 
-    // Connect to the backend service
     private final WorkoutService workoutService = new WorkoutService();
 
     @FXML
     public void initialize() {
-        loadWorkoutHistory();
         setupEventHandlers();
+        loadWorkoutHistory();
     }
 
     private void setupEventHandlers() {
-        // --- 1. Main Feature Buttons ---
+        // Feature Buttons
         strengthButton.setOnAction(e -> navigate("LogStrength"));
         cardioButton.setOnAction(e -> navigate("LogCardio"));
 
-        // --- 2. Navigation Bar ---
+        // Navigation Bar
         backButton.setOnAction(e -> navigate("MainDashboard"));
         homeNavButton.setOnAction(e -> navigate("MainDashboard"));
         summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
         goalsNavButton.setOnAction(e -> navigate("SetGoal"));
         
-        // --- 3. Profile ---
+        // Profile
         profileButton.setOnAction(e -> navigate("EditProfile"));
     }
 
     private void loadWorkoutHistory() {
-        historyList.getChildren().clear(); // Clear placeholder text
+        // This line caused the crash before because historyList was null (missing ID in FXML)
+        if (historyList != null) {
+            historyList.getChildren().clear();
+            
+            List<Workout> workouts = workoutService.getWorkoutHistory();
 
-        List<Workout> workouts = workoutService.getWorkoutHistory();
+            if (workouts.isEmpty()) {
+                Label emptyLabel = new Label("No recent workouts.");
+                emptyLabel.setStyle("-fx-text-fill: #7d7d7d; -fx-padding: 10;");
+                historyList.getChildren().add(emptyLabel);
+            } else {
+                for (Workout workout : workouts) {
+                    String iconType = (workout instanceof CardioWorkout) ? "Cardio" : "Dumbbell";
+                    String details = "";
+                    
+                    if (workout instanceof StrengthWorkout) {
+                        StrengthWorkout sw = (StrengthWorkout) workout;
+                        details = sw.getSetCount() + " sets | " + sw.getRepCount() + " reps | " + sw.getExternalWeightKg() + "kg";
+                    } else if (workout instanceof CardioWorkout) {
+                        CardioWorkout cw = (CardioWorkout) workout;
+                        details = cw.getDurationMinutes() + " mins | " + cw.getDistanceKm() + " km";
+                    }
 
-        if (workouts.isEmpty()) {
-            // Show placeholder if empty
-            Label emptyLabel = new Label("No recent workouts.");
-            emptyLabel.setStyle("-fx-text-fill: #7d7d7d; -fx-padding: 10;");
-            historyList.getChildren().add(emptyLabel);
-        } else {
-            for (Workout workout : workouts) {
-                // Determine icon and details based on type
-                String iconType = (workout instanceof CardioWorkout) ? "Cardio" : "Dumbbell";
-                
-                String details = "";
-                if (workout instanceof StrengthWorkout) {
-                    StrengthWorkout sw = (StrengthWorkout) workout;
-                    details = sw.getSetCount() + " sets | " + sw.getRepCount() + " reps | " + sw.getExternalWeightKg() + "kg";
-                } else if (workout instanceof CardioWorkout) {
-                    CardioWorkout cw = (CardioWorkout) workout;
-                    details = cw.getDurationMinutes() + " mins | " + cw.getDistanceKm() + " km";
+                    addHistoryItem(iconType, workout.getName(), details);
                 }
-
-                addHistoryItem(iconType, workout.getName(), details);
             }
         }
     }
@@ -89,7 +89,6 @@ public class LogSelectionController {
         item.getStyleClass().add("history-item");
 
         Label icon = new Label();
-        // Use CSS classes for icons
         if (iconType.equals("Cardio")) {
             icon.getStyleClass().add("svg-icon-cardio");
         } else {

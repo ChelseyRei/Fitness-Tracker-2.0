@@ -32,7 +32,7 @@ public class EditProfileController {
 
         // Setup Buttons
         // Note: If these buttons crash with NullPointerException, ensure fx:id="saveButton" is in your FXML
-        saveButton.setOnAction(e -> handleSave("MainDashboard"));
+        saveButton.setOnAction(e -> handleSave());
         cancelButton.setOnAction(e -> navigate("MainDashboard"));
         profileButton.setOnAction(e -> navigate("EditProfile"));
 
