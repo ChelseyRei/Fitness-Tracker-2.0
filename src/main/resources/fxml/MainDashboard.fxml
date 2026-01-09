@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/MainDashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainDashboardController">
    <children>
@@ -100,7 +101,17 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Label fx:id="quoteText" prefHeight="81.0" prefWidth="293.0" styleClass="quote-text" wrapText="true" />
+                        <Label fx:id="quoteText" minHeight="-Infinity" prefWidth="293.0" styleClass="quote-text" wrapText="true">
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets right="2.0" />
+                           </padding>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
                         <Label fx:id="quoteAuthor" styleClass="quote-author" />
                      </children>
                   </VBox>
@@ -134,7 +145,7 @@
             </Button>
             
             <Button fx:id="goalsNavButton" mnemonicParsing="false" styleClass="nav-button">
-                <graphic>
+               <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
                         <Label opacity="0.75" styleClass="svg-icon-goals" />

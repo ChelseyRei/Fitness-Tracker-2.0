@@ -13,10 +13,14 @@ import model.Workout;
 import model.StrengthWorkout;
 import model.CardioWorkout;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainDashboardController {
 
@@ -117,11 +121,40 @@ public class MainDashboardController {
         activityList.getChildren().add(item);
     }
 
-    private void loadRandomQuote() {
-        // You can connect this to a quote service later. 
-        // For now, simple rotation or fixed quote is fine.
-        quoteText.setText("You just can't beat the person who never gives up.");
-        quoteAuthor.setText("- Babe Ruth");
+   private void loadRandomQuote() {
+        List<String> quotes = new ArrayList<>();
+        
+        try {
+            // Read the CSV file from resources
+            var stream = getClass().getResourceAsStream("/data/quotes.csv");
+            if (stream != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // CSV Format is: type|quote text
+                    // Example: standard|Consistency beats perfection every time.
+                    String[] parts = line.split("\\|");
+                    if (parts.length >= 2) {
+                        quotes.add(parts[1]); // Add the quote part
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading quotes: " + e.getMessage());
+        }
+
+        if (!quotes.isEmpty()) {
+            // Pick a random quote
+            Random random = new Random();
+            String selectedQuote = quotes.get(random.nextInt(quotes.size()));
+            
+            quoteText.setText(selectedQuote);
+            quoteAuthor.setText(""); // CSV has no authors, so we clear this label
+        } else {
+            // Fallback if file read fails
+            quoteText.setText("Consistency is key.");
+            quoteAuthor.setText("");
+        }
     }
 
     private void setupEventHandlers() {
