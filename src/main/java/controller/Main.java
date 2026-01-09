@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.image.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         // Load the initial screen (MainDashboard)
         scene = new Scene(loadFXML("MainDashboard"), 400, 794);
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/assets/Flame_icon.png")));
         stage.setScene(scene);
         stage.setTitle("Fitness Tracker");
         stage.show();

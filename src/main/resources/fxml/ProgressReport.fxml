@@ -21,13 +21,13 @@
    <children>
       <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="50.0">
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#MainDashboard" styleClass="back-button">
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
                <graphic>
                   <Label styleClass="arrow-icon" />
                </graphic>
             </Button>
             <Label fx:id="progressTitle" text="Progress Report" />
-            <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
+            <Button fx:id="profileButton" mnemonicParsing="false" onAction="#MainDashboard" styleClass="profile-button">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>

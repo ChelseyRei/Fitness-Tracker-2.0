@@ -51,13 +51,13 @@ public class ProgressReportController {
 
     private void setupEventHandlers() {
         // Top Navigation
-        if (backButton != null) backButton.setOnAction(e -> navigate("MainDashboard"));
-        if (profileButton != null) profileButton.setOnAction(e -> navigate("EditProfile"));
+        backButton.setOnAction(e -> navigate("MainDashboard"));
+        profileButton.setOnAction(e -> navigate("EditProfile"));
 
         // Bottom Navigation
-        if (homeNavButton != null) homeNavButton.setOnAction(e -> navigate("MainDashboard"));
-        if (summaryNavButton != null) summaryNavButton.setOnAction(e -> navigate("ProgressReport")); // Already here
-        if (goalsNavButton != null) goalsNavButton.setOnAction(e -> navigate("SetGoal"));
+        homeNavButton.setOnAction(e -> navigate("MainDashboard"));
+        summaryNavButton.setOnAction(e -> navigate("ProgressReport")); // Already here
+        goalsNavButton.setOnAction(e -> navigate("SetGoal"));
     }
 
     private void navigate(String fxml) {
