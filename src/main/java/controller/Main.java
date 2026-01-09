@@ -17,6 +17,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        
         // Load the initial screen (MainDashboard)
         scene = new Scene(loadFXML("MainDashboard"), 400, 794);
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("/assets/Flame_icon.png")));
