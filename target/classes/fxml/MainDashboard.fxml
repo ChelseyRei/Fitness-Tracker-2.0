@@ -101,7 +101,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Label fx:id="quoteText" minHeight="-Infinity" prefWidth="293.0" styleClass="quote-text" wrapText="true">
+                        <Label fx:id="quoteText" prefHeight="100" prefWidth="293.0" styleClass="quote-text" wrapText="true">
                            <VBox.margin>
                               <Insets right="2.0" />
                            </VBox.margin>
