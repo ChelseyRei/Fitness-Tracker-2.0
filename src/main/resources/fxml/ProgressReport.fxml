@@ -21,7 +21,7 @@
    <children>
       <HBox alignment="CENTER" layoutY="30.0" prefHeight="60.0" prefWidth="400.0" spacing="50.0">
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#MainDashboard" styleClass="back-button">
                <graphic>
                   <Label styleClass="arrow-icon" />
                </graphic>
@@ -29,7 +29,11 @@
             <Label fx:id="progressTitle" text="Progress Report" />
             <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
                <graphic>
-                  <Label styleClass="svg-icon-user" />
+                  <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/User_icon.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
          </children>
@@ -168,7 +172,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Summary_icon.svg" />
+                              <Image url="@../assets/Summary_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label-active" text="Summary" />
@@ -183,7 +187,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Home_icon.svg" />
+                              <Image url="@../assets/Home_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Home" />
@@ -198,7 +202,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Goals_icon.svg" />
+                              <Image url="@../assets/Goals_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Goals" />

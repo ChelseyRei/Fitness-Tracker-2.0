@@ -139,7 +139,7 @@
                                <Image url="@../assets/Home_icon.png" />
                            </image>
                         </ImageView>
-                        <Label styleClass="nav-label-active" text="Home" textFill="#a94b4b" />
+                        <Label styleClass="nav-label-active" text="Home"/>
                      </children>
                   </VBox>
                </graphic>
