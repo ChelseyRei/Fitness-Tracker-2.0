@@ -16,6 +16,7 @@ public class EditProfileController {
     // You likely have these buttons in your FXML, or need to add them
     @FXML private Button saveButton; 
     @FXML private Button cancelButton;
+    @FXML private Button profileButton;
 
     private final UserService userService = new UserService();
     private User currentUser;
@@ -31,8 +32,10 @@ public class EditProfileController {
 
         // Setup Buttons
         // Note: If these buttons crash with NullPointerException, ensure fx:id="saveButton" is in your FXML
-        if (saveButton != null) saveButton.setOnAction(e -> handleSave());
-        if (cancelButton != null) cancelButton.setOnAction(e -> navigate("MainDashboard"));
+        saveButton.setOnAction(e -> handleSave("MainDashboard"));
+        cancelButton.setOnAction(e -> navigate("MainDashboard"));
+        profileButton.setOnAction(e -> navigate("EditProfile"));
+
     }
 
     private void handleSave() {

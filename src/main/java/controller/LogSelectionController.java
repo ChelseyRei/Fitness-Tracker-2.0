@@ -28,6 +28,7 @@ public class LogSelectionController {
     @FXML private Button summaryNavButton;
     @FXML private Button homeNavButton;
     @FXML private Button goalsNavButton;
+    @FXML private Button logWorkoutButton;
 
     // Connect to the backend service
     private final WorkoutService workoutService = new WorkoutService();
