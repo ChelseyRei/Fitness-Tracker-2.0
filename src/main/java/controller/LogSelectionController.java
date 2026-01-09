@@ -1,11 +1,17 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import service.WorkoutService;
 import model.Workout;
+import model.StrengthWorkout;
+import model.CardioWorkout;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -13,63 +19,101 @@ public class LogSelectionController {
 
     @FXML private Button backButton;
     @FXML private Button profileButton;
-    @FXML private Button strengthButton; // Matches fx:id="strengthButton"
-    @FXML private Button cardioButton;   // Matches fx:id="cardioButton"
-    @FXML private VBox historyList;      // Matches fx:id="historyList"
+    @FXML private Button strengthButton;
+    @FXML private Button cardioButton;
+    @FXML private ScrollPane historyScrollPane;
+    @FXML private VBox historyList; // The VBox inside the ScrollPane
     
-    // Bottom Navigation Buttons
+    // Bottom Navigation
     @FXML private Button summaryNavButton;
     @FXML private Button homeNavButton;
     @FXML private Button goalsNavButton;
 
+    // Connect to the backend service
     private final WorkoutService workoutService = new WorkoutService();
 
     @FXML
     public void initialize() {
-        // 1. SETUP MAIN BUTTONS (This makes them click!)
+        loadWorkoutHistory();
+        setupEventHandlers();
+    }
+
+    private void setupEventHandlers() {
+        // --- 1. Main Feature Buttons ---
         strengthButton.setOnAction(e -> navigate("LogStrength"));
         cardioButton.setOnAction(e -> navigate("LogCardio"));
-        
-        // 2. SETUP TOP NAVIGATION
-        backButton.setOnAction(e -> navigate("MainDashboard"));
-        profileButton.setOnAction(e -> navigate("EditProfile"));
 
-        // 3. SETUP BOTTOM NAVIGATION
+        // --- 2. Navigation Bar ---
+        backButton.setOnAction(e -> navigate("MainDashboard"));
         homeNavButton.setOnAction(e -> navigate("MainDashboard"));
         summaryNavButton.setOnAction(e -> navigate("ProgressReport"));
         goalsNavButton.setOnAction(e -> navigate("SetGoal"));
-
-        // 4. LOAD DATA
-        loadWorkoutHistory();
+        
+        // --- 3. Profile ---
+        profileButton.setOnAction(e -> navigate("EditProfile"));
     }
 
     private void loadWorkoutHistory() {
-        historyList.getChildren().clear();
+        historyList.getChildren().clear(); // Clear placeholder text
+
         List<Workout> workouts = workoutService.getWorkoutHistory();
 
         if (workouts.isEmpty()) {
-            Label placeholder = new Label("No recent workouts.");
-            placeholder.setStyle("-fx-text-fill: gray; -fx-padding: 10;");
-            historyList.getChildren().add(placeholder);
+            // Show placeholder if empty
+            Label emptyLabel = new Label("No recent workouts.");
+            emptyLabel.setStyle("-fx-text-fill: #7d7d7d; -fx-padding: 10;");
+            historyList.getChildren().add(emptyLabel);
         } else {
-            for (Workout w : workouts) {
-                // Simple Label for each history item
-                Label label = new Label(w.getName() + " (" + w.getDate() + ")");
-                label.getStyleClass().add("history-item"); 
-                // Add some basic styling or use a custom HBox like before if preferred
-                label.setStyle("-fx-padding: 10; -fx-font-size: 14px; -fx-border-color: #eee; -fx-border-width: 0 0 1 0;");
-                historyList.getChildren().add(label);
+            for (Workout workout : workouts) {
+                // Determine icon and details based on type
+                String iconType = (workout instanceof CardioWorkout) ? "Cardio" : "Dumbbell";
+                
+                String details = "";
+                if (workout instanceof StrengthWorkout) {
+                    StrengthWorkout sw = (StrengthWorkout) workout;
+                    details = sw.getSetCount() + " sets | " + sw.getRepCount() + " reps | " + sw.getExternalWeightKg() + "kg";
+                } else if (workout instanceof CardioWorkout) {
+                    CardioWorkout cw = (CardioWorkout) workout;
+                    details = cw.getDurationMinutes() + " mins | " + cw.getDistanceKm() + " km";
+                }
+
+                addHistoryItem(iconType, workout.getName(), details);
             }
         }
     }
 
-    // Uses the Main.java logic to switch screens safely
+    private void addHistoryItem(String iconType, String workoutName, String details) {
+        HBox item = new HBox(12);
+        item.setAlignment(Pos.CENTER_LEFT);
+        item.getStyleClass().add("history-item");
+
+        Label icon = new Label();
+        // Use CSS classes for icons
+        if (iconType.equals("Cardio")) {
+            icon.getStyleClass().add("svg-icon-cardio");
+        } else {
+            icon.getStyleClass().add("svg-icon-dumbbell");
+        }
+
+        VBox textBox = new VBox(2);
+        Label nameLabel = new Label(workoutName);
+        nameLabel.getStyleClass().add("history-workout-name");
+        
+        Label detailsLabel = new Label(details);
+        detailsLabel.getStyleClass().add("history-workout-details");
+        
+        textBox.getChildren().addAll(nameLabel, detailsLabel);
+
+        item.getChildren().addAll(icon, textBox);
+        historyList.getChildren().add(item);
+    }
+
     private void navigate(String fxml) {
         try {
             Main.setRoot(fxml);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error loading: " + fxml + ". Make sure the file exists in /resources/fxml/");
+            System.err.println("Error navigating to " + fxml);
         }
     }
 }
