@@ -70,7 +70,7 @@
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                      </padding>
                      <children>
-                        <Label styleClass="svg-icon-bell" opacity="0.75" />
+                        <Label opacity="0.75" styleClass="svg-icon-bell" />
                         <VBox>
                            <children>
                               <Label styleClass="reminder-label" text="Weigh-in reminder" />
@@ -82,7 +82,7 @@
                   
                   <Button fx:id="logWorkoutButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="360.0" styleClass="log-workout-button" text="Log Workouts">
                      <graphic>
-                        <Label styleClass="svg-icon-dumbbell" opacity="0.6" rotate="-48.9" />
+                        <Label opacity="0.6" rotate="-48.9" styleClass="svg-icon-dumbbell" />
                      </graphic>
                   </Button>
                   
@@ -117,7 +117,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Summary_icon.svg" />
+                              <Image url="@../assets/Summary_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Summary" />
@@ -132,7 +132,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                               <Image url="@../assets/Home_icon.svg" />
+                               <Image url="@../assets/Home_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label-active" text="Home" textFill="#a94b4b" />
@@ -147,7 +147,7 @@
                      <children>
                         <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/Goals_icon.svg" />
+                              <Image url="@../assets/Goals_icon.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="nav-label" text="Goals" />
