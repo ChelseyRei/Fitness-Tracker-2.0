@@ -3,15 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/EditProfile.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileController">
@@ -20,17 +17,17 @@
       
       <Button fx:id="backButton" layoutX="33.0" layoutY="39.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
          <graphic>
-            <Label alignment="CENTER_RIGHT" styleClass="arrow-icon">
+            <Label fx:id="backButton" alignment="CENTER_RIGHT" styleClass="arrow-icon">
                <padding>
                   <Insets left="11.0" />
                </padding>
             </Label>
-         </graphic>
+         </graphic>  
       </Button>
       
       <Label fx:id="editProfileLabel" layoutX="280.0" layoutY="47.0" text="Edit Profile" />
       
-      <Label styleClass="svg-icon-user-large" layoutX="50.0" layoutY="105.0" prefHeight="80.0" prefWidth="80.0" />
+      <Label layoutX="50.0" layoutY="105.0" prefHeight="80.0" prefWidth="80.0" styleClass="svg-icon-user-large" />
       
       <VBox layoutX="175.0" layoutY="125.0" prefHeight="50.0" prefWidth="200.0">
          <children>

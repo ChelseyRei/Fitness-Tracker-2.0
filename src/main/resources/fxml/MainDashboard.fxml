@@ -18,7 +18,7 @@
             <Label fx:id="heatTitle" text="H.E.A.T." />
             <Button fx:id="profileButton" mnemonicParsing="false" styleClass="profile-button">
                <graphic>
-                  <Label styleClass="svg-icon-user" />
+                  <Label fx:id="profileButton" styleClass="svg-icon-user" />
                </graphic>
             </Button>
          </children>
@@ -70,7 +70,7 @@
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                      </padding>
                      <children>
-                        <Label styleClass="svg-icon-bell" opacity="0.75" />
+                        <Label opacity="0.75" styleClass="svg-icon-bell" />
                         <VBox>
                            <children>
                               <Label styleClass="reminder-label" text="Weigh-in reminder" />
@@ -82,7 +82,7 @@
                   
                   <Button fx:id="logWorkoutButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="360.0" styleClass="log-workout-button" text="Log Workouts">
                      <graphic>
-                        <Label styleClass="svg-icon-dumbbell" opacity="0.6" rotate="-48.9" />
+                        <Label opacity="0.6" rotate="-48.9" styleClass="svg-icon-dumbbell" />
                      </graphic>
                   </Button>
                   
@@ -113,9 +113,9 @@
          <children>
             <Button fx:id="summaryNavButton" mnemonicParsing="false" styleClass="nav-button">
                <graphic>
-                  <VBox alignment="CENTER" spacing="3.0">
+                  <VBox fx:id="summaryNavButton" alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="summaryNavButton" fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/Summary_icon.svg" />
                            </image>
@@ -130,7 +130,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="goalsNavButton" fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/Home_icon.svg" />
                            </image>
@@ -145,7 +145,7 @@
                <graphic>
                   <VBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="homeNavButton" fitHeight="24.0" fitWidth="24.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/Goals_icon.svg" />
                            </image>
